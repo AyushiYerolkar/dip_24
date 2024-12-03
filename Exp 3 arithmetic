@@ -1,0 +1,80 @@
+clc;
+close all;
+clear all;
+
+figure(1);
+%Read original image
+subplot(2,2,1);
+I = imread('peppers.png');
+imshow(I);
+title('Original image');
+
+%Convert image into seperate channels
+IR = I(:, :, 1);
+IG = I(:, :, 2);
+IB = I(:, :, 3);
+subplot(2,2,2);
+imshow(IR);
+title('Red channel');
+subplot(2,2,3);
+imshow(IG);
+title('Green channel');
+subplot(2,2,4);
+imshow(IB);
+title('Blue channel');
+
+%Binarize images
+IRbi = imbinarize(IR);
+IGbi = imbinarize(IG);
+IBbi = imbinarize(IB);
+
+%Arithmetic operations
+figure(2);
+subplot(2,2,1);
+imshow(IR);
+title('Red channel');
+subplot(2,2,2);
+imshow(IG);
+title('Green channel');
+subplot(2,2,3);
+add = imadd(IRbi,IGbi);
+imshow(add);
+title('Adding red green');
+subplot(2,2,4);
+sub = imsubtract(IRbi,IGbi);
+imshow(sub);
+title('Subtract green from red');
+
+%Binary operations
+figure(3);
+subplot(2,2,1);
+imshow(IR);
+title('Red channel');
+subplot(2,2,2);
+imshow(IB);
+title('Blue channel');
+
+subplot(2,2,3);
+and = bitand(IRbi,IBbi);
+imshow(and);
+title('Bit and Red and Blue');
+
+subplot(2,2,4);
+xor = bitxor(IRbi,IBbi);
+imshow(xor);
+title('bit xor Red or Blue');
+
+%Spatial transformation
+figure(4);
+subplot(2,2,1);
+imshow(I);
+title('Original image');
+
+subplot(2,2,3);
+rotate = imrotate(I, 90);
+imshow(rotate);
+title('Rotating Image');
+subplot(2,2,4);
+resize = imresize(I, 0.05);
+imshow(resize);
+title('Scaling Image'); 
