@@ -1,0 +1,25 @@
+clc; 
+close all; 
+clear all; 
+
+figure(1); 
+image1=[0,1,0,1;1,0,1,0;0,1,0,1;1,0,1,0]; 
+subplot(2,2,1); 
+imshow(image1); 
+title("chessboard image"); 
+
+figure(1) 
+image2=[0,0.25,0.5,0.7,1;0,0.25,0.5,0.7,1;0,0.25,0.5,0.7,1;0,0.25,0.5 ,0.7,1]; 
+subplot(2,2,3); 
+imshow(image2); 
+title("Gray scale image"); 
+
+figure(1) 
+image3=[0,0,1,0,1,1;1,0,1,0,0,1;0,0,1,0,0,0;0,1,1,1,0,1;0,0,1,1,0,1]; subplot(2,2,2); 
+imshow(image3); 
+title("Number image"); 
+
+figure(1) 
+image4=[1,1,0,1,1;1,0,1,0,1;0,1,1,1,0;1,0,1,0,1;1,1,0,1,1]; subplot(2,2,4); 
+imshow(image4); 
+title("Diamond shape image");
