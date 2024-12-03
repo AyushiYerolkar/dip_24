@@ -1,0 +1,29 @@
+clc;
+close all;
+clear all;
+
+figure(1);
+subplot(2,2,1);
+I = imread('pout.tif');
+imshow(I);
+title("Original Image");
+
+subplot(2,2,2);
+I2 = im2double(I);
+imshow(I2);
+title("Normalize Image");
+
+subplot(2,2,3);
+D = dct2(I2);
+imshow(D);
+imsave;
+imfinfo("dct.bmp");
+title("DCT image");
+
+subplot(2,2,4);
+I3 = im2double(D);
+I4 = idct2(I3);
+imshow(I4);
+imsave;
+imfinfo("idct.bmp");
+title("IDCT image");
