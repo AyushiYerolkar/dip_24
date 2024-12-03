@@ -1,0 +1,73 @@
+clc; 
+close all; 
+clear all; 
+
+figure(1); 
+image = imread('lenna.png'); 
+% Define the weighted average filter 
+weighted_average_kernel = [1 2 1; 
+2 4 2; 
+1 2 1] / 16; 
+
+% Apply the weighted average filter to the original image
+smoothed_image = imfilter(image, weighted_average_kernel);
+subplot(2, 2, 1); 
+imshow(image); 
+title('Original Image'); 
+
+subplot(2, 2, 2); 
+imshow(smoothed_image); 
+title('Smoothed Image (Weighted Average)'); 
+
+% Add salt and pepper noise to the original image
+noisy_image = imnoise(image, 'salt & pepper', 0.02);
+subplot(2, 2, 3); 
+imshow(noisy_image); 
+title('Noisy Image(Salt & Pepper)'); 
+
+% Apply median filter to the noisy image 
+median_filtered_image = medfilt2(rgb2gray(noisy_image), [3 3]);
+subplot(2, 2, 4); 
+imshow(median_filtered_image); 
+title('Median Filter Image (Noise Removal)') 
+
+figure(2); 
+% Define the Laplacian filter for sharpening 
+laplacian_kernel = [-1 -1 -1; 
+-1 8 -1; 
+-1 -1 -1]; 
+
+% Apply the Laplacian filter to the original image 
+laplacian_filtered_image = imfilter(image, laplacian_kernel); 
+imshow(laplacian_filtered_image); 
+title('Laplacian(sharpened) Image'); 
+
+figure(3); 
+A=imread('lenna.png'); 
+subplot(2,3,1); 
+imshow(A); 
+title('original image'); 
+
+
+G=[-1,-2,-1; 
+0,0,0; 
+1,2,1]; 
+
+Gx=imfilter(A,G); 
+subplot(2,3,2); 
+imshow(Gx); 
+title('Gx sobel filter');
+
+H=[-1,0,1; 
+-2,0,2; 
+-1,0,1];
+
+Gy=imfilter(A,H); 
+subplot(2,3,3); 
+imshow(Gy); 
+title('Gy sobel filter'); 
+
+Z=imadd(Gx,Gy); 
+subplot(2,3,4); 
+imshow(Z); 
+title('added image'); 
