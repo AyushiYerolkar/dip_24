@@ -1,0 +1,31 @@
+ # Import necessary libraries
+ import cv2 as cv2
+ import numpy as np
+ from google.colab.patches import cv2_imshow
+
+ # Readthe uploaded image directly from /content path
+ I = cv2.imread('/content/imagej.png')
+ # Display the original image
+ cv2_imshow(I)
+
+ # Create a kernel for the morphological operations
+ kernel_1 = np.ones((6, 6), np.uint8)
+ # Perform dilation
+ dilatedImg = cv2.dilate(I, kernel_1, iterations=1)
+ cv2_imshow(dilatedImg)
+
+ # Perform erosion
+ erodeImg = cv2.erode(I, kernel_1, iterations=1)
+ cv2_imshow(erodeImg)
+
+ # Perform opening (erosion followed by dilation)
+ openImg = cv2.morphologyEx(I, cv2.MORPH_OPEN, kernel_1)
+ cv2_imshow(openImg)
+
+ # Perform closing (dilation followed by erosion)
+ closeImg = cv2.morphologyEx(I, cv2.MORPH_CLOSE, kernel_1)
+ cv2_imshow(closeImg)
+
+ # Perform gradient (difference between dilation and erosion)
+ gradientImg = cv2.morphologyEx(I, cv2.MORPH_GRADIENT, kernel_1)
+ cv2_imshow(gradientImg)
