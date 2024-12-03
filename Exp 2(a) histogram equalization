@@ -1,0 +1,23 @@
+clc;
+close all;
+clear all;
+
+A= imread("street.jpg");
+figure(1);
+subplot(2,2,1);
+imshow(A)
+title("street Image")
+
+subplot(2,2,2);
+imhist(A);
+title("Histogram of Low Image");
+
+B = histeq(A);
+subplot(2,2,3);
+imshow(B);
+title("Equalized Image");
+
+subplot(2,2,4);
+imhist(B);
+title("Equalized Image Histogram");
+
